@@ -1,0 +1,44 @@
+name: "Germline Variant Calling Pipeline"
+version: "2.0"
+description: "GATK best practices for germline variant calling"
+
+reference:
+  genome: "GRCh38"
+  path: "/reference/Homo_sapiens_assembly38.fasta"
+  
+steps:
+  - name: "quality_control"
+    tool: "FastQC"
+    params:
+      threads: 4
+      
+  - name: "trimming"
+    tool: "Trimmomatic"
+    params:
+      quality: 20
+      min_length: 50
+      
+  - name: "alignment"
+    tool: "BWA-MEM"
+    params:
+      threads: 8
+      
+  - name: "mark_duplicates"
+    tool: "Picard"
+    
+  - name: "base_recalibration"
+    tool: "GATK BaseRecalibrator"
+    
+  - name: "variant_calling"
+    tool: "GATK HaplotypeCaller"
+    params:
+      ploidy: 2
+      min_base_quality: 20
+      
+  - name: "annotation"
+    tool: "ANNOVAR"
+    databases:
+      - "dbSNP"
+      - "ClinVar"
+      - "gnomAD"
+      - "COSMIC"

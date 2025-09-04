@@ -1,0 +1,6 @@
+sample_id,patient_id,sample_type,library_prep,sequencer,run_date,coverage_target
+SAMPLE001,PT2001,Blood,TruSeq,NovaSeq6000,2024-01-15,30x
+SAMPLE002,PT2002,Tissue,Nextera,MiSeq,2024-01-15,100x
+SAMPLE003,PT2003,Blood,TruSeq,NovaSeq6000,2024-01-14,30x
+SAMPLE004,PT2004,Saliva,Custom,NextSeq550,2024-01-14,50x
+SAMPLE005,PT2005,Tissue,TruSeq,NovaSeq6000,2024-01-13,60x
